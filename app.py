@@ -33,8 +33,8 @@ HTML_CONTENT = """<!doctype html>
     --shadow-sm: 0 1px 2px rgba(40, 38, 34, 0.06);
     --shadow-md: 0 1px 2px rgba(40, 38, 34, 0.05), 0 10px 28px -14px rgba(40, 38, 34, 0.16);
 
-    --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
-    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", ui-sans-serif, system-ui, sans-serif;
+    --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
     --font-mono: "Cascadia Code", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
 
     --fs-micro: clamp(0.66rem, 0.63rem + 0.14vw, 0.72rem);
@@ -244,6 +244,7 @@ HTML_CONTENT = """<!doctype html>
   }
   #hero-headline-text {
     display: inline-block;
+    font-weight: 700;
     transition: transform 0.35s cubic-bezier(.2,.8,.2,1), opacity 0.35s ease;
   }
   #hero-headline-text.is-out {
