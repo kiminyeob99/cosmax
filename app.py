@@ -766,6 +766,24 @@ HTML_CONTENT = """<!doctype html>
     line-height: 1.6;
   }
 
+  /* ---------- Cursor text highlight ---------- */
+  .hero p,
+  .country-content p,
+  .detail-body p,
+  .review-item p,
+  footer.note {
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: background-color 0.15s ease;
+  }
+  .hero p:hover,
+  .country-content p:hover,
+  .detail-body p:hover,
+  .review-item p:hover,
+  footer.note:hover {
+    background-color: var(--accent-soft);
+  }
+
   @media (max-width: 640px) {
     .shell { padding: 0 16px 64px; }
     .top-inner { padding: 13px 16px; }
@@ -776,6 +794,7 @@ HTML_CONTENT = """<!doctype html>
 
   @media (prefers-reduced-motion: reduce) {
     .chip-card, .country-card, .reset-btn, .search-box, .product-card { transition: none; }
+    .hero p, .country-content p, .detail-body p, .review-item p, footer.note { transition: none; }
   }
 </style>
 </head>
