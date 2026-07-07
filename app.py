@@ -1,6 +1,11 @@
-from flask import Flask, Response
+import streamlit as st
+import streamlit.components.v1 as components
 
-app = Flask(__name__)
+st.set_page_config(page_title="전략적으로 물어봐", layout="wide")
+st.markdown(
+    "<style>.block-container{padding:0;max-width:100%;} header{visibility:hidden;} footer{visibility:hidden;}</style>",
+    unsafe_allow_html=True,
+)
 
 HTML_CONTENT = """<!doctype html>
 <html lang="ko">
@@ -1398,11 +1403,4 @@ HTML_CONTENT = """<!doctype html>
 """
 
 
-@app.route("/")
-def index():
-    return Response(HTML_CONTENT, mimetype="text/html")
-
-
-if __name__ == "__main__":
-    # 개발용 서버 실행 (배포 시에는 gunicorn 등 WSGI 서버 사용을 권장합니다)
-    app.run(host="0.0.0.0", port=5000, debug=True, use_reloader=False)
+components.html(HTML_CONTENT, height=3200, scrolling=True)
