@@ -237,6 +237,23 @@ HTML_CONTENT = """<!doctype html>
     letter-spacing: -0.02em;
     line-height: 1.15;
   }
+  .hero-headline {
+    overflow: hidden;
+    padding: 6px 0;
+    margin: -6px 0;
+  }
+  #hero-headline-text {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), opacity 0.35s ease;
+  }
+  #hero-headline-text.is-out {
+    transform: translateY(-14px);
+    opacity: 0;
+  }
+  #hero-headline-text.is-in {
+    transform: translateY(14px);
+    opacity: 0;
+  }
   .hero-rule {
     width: 40px;
     height: 2px;
@@ -795,6 +812,7 @@ HTML_CONTENT = """<!doctype html>
   @media (prefers-reduced-motion: reduce) {
     .chip-card, .country-card, .reset-btn, .search-box, .product-card { transition: none; }
     .hero p, .country-content p, .detail-body p, .review-item p, footer.note { transition: none; }
+    #hero-headline-text { transition: none; }
   }
 </style>
 </head>
@@ -817,7 +835,7 @@ HTML_CONTENT = """<!doctype html>
 <section class="hero">
   <div class="hero-inner">
     <div class="eyebrow">Daily Intelligence</div>
-    <h1>오늘, 뷰티 시장에서 알아야 할 것들</h1>
+    <h1 class="hero-headline"><span id="hero-headline-text">오늘, 뷰티 시장에서 알아야 할 것들</span></h1>
     <div class="hero-rule"></div>
     <p>국가별 트렌드, 뜨는 성분, 성분별 인기 브랜드 제품을 한 화면에서 확인하세요. 아래 성분을 클릭하면 관련 제품만 걸러볼 수 있습니다.</p>
   </div>
@@ -1248,6 +1266,29 @@ HTML_CONTENT = """<!doctype html>
         ]
       }
     ];
+
+    // 헤드라인 다국어 자동 순환 (한국어 → 영어 → 중국어 → 일본어)
+    var headlineTexts = [
+      "오늘, 뷰티 시장에서 알아야 할 것들",
+      "Today, What You Need to Know in the Beauty Market",
+      "今天,你需要了解的美妆市场动态",
+      "本日、美容市場で知っておくべきこと"
+    ];
+    var headlineEl = document.getElementById("hero-headline-text");
+    var headlineIndex = 0;
+    if (headlineEl) {
+      setInterval(function () {
+        headlineEl.classList.add("is-out");
+        setTimeout(function () {
+          headlineIndex = (headlineIndex + 1) % headlineTexts.length;
+          headlineEl.textContent = headlineTexts[headlineIndex];
+          headlineEl.classList.remove("is-out");
+          headlineEl.classList.add("is-in");
+          void headlineEl.offsetWidth;
+          headlineEl.classList.remove("is-in");
+        }, 350);
+      }, 3000);
+    }
 
     var chipGrid = document.getElementById("chip-grid");
     var productGrid = document.getElementById("product-grid");
