@@ -32,6 +32,10 @@ HTML_CONTENT = """<!doctype html>
     --line: #E2DFDA;
     --shadow-sm: 0 1px 2px rgba(40, 38, 34, 0.06);
     --shadow-md: 0 1px 2px rgba(40, 38, 34, 0.05), 0 10px 28px -14px rgba(40, 38, 34, 0.16);
+    --good-soft: #E3ECE1;
+    --good-strong: #3F6B3A;
+    --caution-soft: #F4E3DA;
+    --caution-strong: #9C4A2E;
 
     --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
     --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
@@ -66,6 +70,10 @@ HTML_CONTENT = """<!doctype html>
       --line: #322E29;
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
       --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 28px -14px rgba(0, 0, 0, 0.6);
+      --good-soft: #26332A;
+      --good-strong: #8FBF87;
+      --caution-soft: #3A2A22;
+      --caution-strong: #E2A688;
     }
   }
   :root[data-theme="dark"] {
@@ -86,6 +94,10 @@ HTML_CONTENT = """<!doctype html>
     --line: #322E29;
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
     --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 28px -14px rgba(0, 0, 0, 0.6);
+    --good-soft: #26332A;
+    --good-strong: #8FBF87;
+    --caution-soft: #3A2A22;
+    --caution-strong: #E2A688;
   }
   :root[data-theme="light"] {
     --bg: #F5F4F2;
@@ -105,6 +117,10 @@ HTML_CONTENT = """<!doctype html>
     --line: #E2DFDA;
     --shadow-sm: 0 1px 2px rgba(40, 38, 34, 0.06);
     --shadow-md: 0 1px 2px rgba(40, 38, 34, 0.05), 0 10px 28px -14px rgba(40, 38, 34, 0.16);
+    --good-soft: #E3ECE1;
+    --good-strong: #3F6B3A;
+    --caution-soft: #F4E3DA;
+    --caution-strong: #9C4A2E;
   }
 
   * { box-sizing: border-box; }
@@ -508,6 +524,30 @@ HTML_CONTENT = """<!doctype html>
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 8px;
+  }
+  .combo-good-tag {
+    display: inline-block;
+    font-size: var(--fs-micro);
+    background: var(--good-soft);
+    color: var(--good-strong);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .combo-caution-tag {
+    display: inline-block;
+    font-size: var(--fs-micro);
+    background: var(--caution-soft);
+    color: var(--caution-strong);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .caution-note {
+    margin-top: 8px;
+    font-size: var(--fs-small);
+    color: var(--muted);
+    line-height: 1.6;
   }
 
   .detail-foot {
@@ -959,6 +999,22 @@ HTML_CONTENT = """<!doctype html>
         <div class="purpose-tags" id="detail-purposes"></div>
       </div>
 
+      <div class="detail-body">
+        <div class="label">추천 배합 조합</div>
+        <div class="purpose-tags" id="detail-good-combo"></div>
+      </div>
+
+      <div class="detail-body">
+        <div class="label">배합 시 주의가 필요한 조합</div>
+        <div class="purpose-tags" id="detail-caution-combo"></div>
+        <p class="caution-note" id="detail-caution-note"></p>
+      </div>
+
+      <div class="detail-body">
+        <div class="label">추천 피부 타입</div>
+        <div class="purpose-tags" id="detail-skin-types"></div>
+      </div>
+
       <div class="detail-foot">
         <span class="src-note">출처: 대한화장품협회(KCIA) 화장품성분사전</span>
         <a class="kcia-link" id="detail-link" href="#" target="_blank" rel="noopener">
@@ -1061,7 +1117,11 @@ HTML_CONTENT = """<!doctype html>
         purposes: ["피부컨디셔닝제"],
         url: "https://kcia.or.kr/cid/search/ingd_view.php?no=540",
         delta: "+18%",
-        desc: "진정 · 장벽 강화 클레임과 함께 재조명"
+        desc: "진정 · 장벽 강화 클레임과 함께 재조명",
+        goodWith: ["판테놀", "세라마이드", "히알루론산"],
+        avoidWith: ["고농도 각질케어산(AHA/BHA)", "고농도 레티놀"],
+        avoidNote: "피부 장벽이 약해졌을 때 자극적인 각질케어 성분과 동시에 쓰면 진정 효과가 상쇄될 수 있어요.",
+        skinTypes: ["민감성", "트러블성", "복합성"]
       },
       {
         name: "나이아신아마이드",
@@ -1073,7 +1133,11 @@ HTML_CONTENT = """<!doctype html>
         purposes: ["헤어컨디셔닝제", "피부컨디셔닝제(기타)"],
         url: "https://kcia.or.kr/cid/search/ingd_view.php?no=1941",
         delta: "+12%",
-        desc: "톤업 · 모공 케어 스테디셀러로 자리잡음"
+        desc: "톤업 · 모공 케어 스테디셀러로 자리잡음",
+        goodWith: ["히알루론산", "판테놀", "펩타이드", "세라마이드"],
+        avoidWith: ["고농도 순수 비타민C(아스코르빅애씨드)"],
+        avoidNote: "낮은 pH의 고농도 순수 비타민C와 함께 쓰면 두 성분의 효과가 서로 떨어질 수 있어 시간차를 두는 게 좋아요.",
+        skinTypes: ["지성", "복합성", "모공·톤 케어가 필요한 피부"]
       },
       {
         name: "펩타이드",
@@ -1085,7 +1149,11 @@ HTML_CONTENT = """<!doctype html>
         purposes: ["피부컨디셔닝제(기타)"],
         url: "https://kcia.or.kr/cid/search/ingd_view.php?no=7534",
         delta: "+24%",
-        desc: "성장인자 계열 펩타이드로 안티에이징 라인 확장"
+        desc: "성장인자 계열 펩타이드로 안티에이징 라인 확장",
+        goodWith: ["히알루론산", "나이아신아마이드", "세라마이드"],
+        avoidWith: ["고농도 각질케어산(AHA/BHA)", "레티놀"],
+        avoidNote: "펩타이드는 단백질 구조라 강한 산성 성분과 함께 쓰면 구조가 깨져 효과가 떨어질 수 있어요.",
+        skinTypes: ["건성", "탄력 저하 피부", "노화 케어가 필요한 피부"]
       },
       {
         name: "판테놀",
@@ -1097,7 +1165,11 @@ HTML_CONTENT = """<!doctype html>
         purposes: ["헤어컨디셔닝제", "용제", "피부컨디셔닝제(보습제)"],
         url: "https://kcia.or.kr/cid/search/ingd_view.php?no=3528",
         delta: "+9%",
-        desc: "저자극 라인의 기본 진정 성분으로 채택 증가"
+        desc: "저자극 라인의 기본 진정 성분으로 채택 증가",
+        goodWith: ["시카(병풀추출물)", "히알루론산", "세라마이드", "대부분의 성분"],
+        avoidWith: [],
+        avoidNote: "자극이 거의 없는 만능 진정·보습 성분이라 배합 제한이 크지 않아요.",
+        skinTypes: ["모든 피부 타입", "건성", "민감성"]
       },
       {
         name: "프로바이오틱스",
@@ -1109,7 +1181,11 @@ HTML_CONTENT = """<!doctype html>
         purposes: ["산화방지제", "피부컨디셔닝제(기타)"],
         url: "https://kcia.or.kr/cid/search/ingd_view.php?no=10000",
         delta: "+15%",
-        desc: "피부 마이크로바이옴 밸런싱 컨셉과 결합"
+        desc: "피부 마이크로바이옴 밸런싱 컨셉과 결합",
+        goodWith: ["판테놀", "세라마이드", "히알루론산"],
+        avoidWith: ["고농도 알코올", "벤조일퍼옥사이드 등 강한 항균 성분"],
+        avoidNote: "강한 항균·살균 성분과 함께 쓰면 유익균과 발효 성분의 밸런싱 효과가 상쇄될 수 있어요.",
+        skinTypes: ["민감성", "건성", "피부 장벽이 약한 피부"]
       },
       {
         name: "히알루론산",
@@ -1121,7 +1197,11 @@ HTML_CONTENT = """<!doctype html>
         purposes: ["피부컨디셔닝제"],
         url: "https://kcia.or.kr/cid/search/ingd_view.php?no=1265",
         delta: "+7%",
-        desc: "다중 분자량 조합으로 보습 차별화"
+        desc: "다중 분자량 조합으로 보습 차별화",
+        goodWith: ["나이아신아마이드", "펩타이드", "세라마이드", "비타민C"],
+        avoidWith: [],
+        avoidNote: "건조한 환경에서 보습 크림 없이 단독 사용하면 오히려 피부 속 수분을 끌어올려 날려버릴 수 있어 유수분 크림과 함께 쓰는 걸 추천해요.",
+        skinTypes: ["모든 피부 타입", "건성", "수분 부족형 지성"]
       }
     ];
 
@@ -1458,6 +1538,41 @@ HTML_CONTENT = """<!doctype html>
         span.className = "concept-tag";
         span.textContent = p;
         purposesEl.appendChild(span);
+      });
+
+      var goodEl = document.getElementById("detail-good-combo");
+      goodEl.innerHTML = "";
+      ing.goodWith.forEach(function (g) {
+        var span = document.createElement("span");
+        span.className = "combo-good-tag";
+        span.textContent = g;
+        goodEl.appendChild(span);
+      });
+
+      var cautionEl = document.getElementById("detail-caution-combo");
+      cautionEl.innerHTML = "";
+      if (ing.avoidWith.length === 0) {
+        var noneSpan = document.createElement("span");
+        noneSpan.className = "concept-tag";
+        noneSpan.textContent = "특별한 주의 성분 없음";
+        cautionEl.appendChild(noneSpan);
+      } else {
+        ing.avoidWith.forEach(function (a) {
+          var span = document.createElement("span");
+          span.className = "combo-caution-tag";
+          span.textContent = a;
+          cautionEl.appendChild(span);
+        });
+      }
+      document.getElementById("detail-caution-note").textContent = ing.avoidNote || "";
+
+      var skinEl = document.getElementById("detail-skin-types");
+      skinEl.innerHTML = "";
+      ing.skinTypes.forEach(function (s) {
+        var span = document.createElement("span");
+        span.className = "concept-tag";
+        span.textContent = s;
+        skinEl.appendChild(span);
       });
 
       detailPanel.classList.add("open");
