@@ -911,7 +911,7 @@ HTML_CONTENT = """<!doctype html>
           <div class="region">중국</div>
           <h3>기능성 원료 국산화 가속</h3>
           <p>자국산 발효 원료·펩타이드 소재를 강조하는 브랜드 라인업이 빠르게 늘어나는 추세.</p>
-          <div class="src">출처: 品观网(Pinguan) · 클릭하면 관련 기사를 볼 수 있어요</div>
+          <div class="src">출처: CBNData · 클릭하면 관련 기사를 볼 수 있어요</div>
         </div>
       </article>
     </div>
@@ -1337,10 +1337,10 @@ HTML_CONTENT = """<!doctype html>
         url: "https://demainbeauty.com/en/blogs/blog/la-clean-beauty-francaise-lexcellence-du-soin"
       },
       CN: {
-        source: "品观网(Pinguan)",
-        title: "这些中国美妆原料全球领先！",
-        summary: "발효 유래 원료와 펩타이드 등 자국산 기능성 소재를 앞세운 중국 브랜드들이 세계 시장에서도 경쟁력을 인정받고 있다.",
-        url: "https://m.pinguan.com/article/detail/id/21513"
+        source: "CBNData",
+        title: "一年90个，化妆品新原料透露哪些趋势？",
+        summary: "1년간 90종의 신규 화장품 원료가 등록되며 전년 대비 30% 이상 증가했고, 그중 80%가 자국 기업 등록으로 펩타이드·식물성 발효 원료가 안티에이징 분야의 핵심으로 부상하고 있다.",
+        url: "https://m.cbndata.com/information/293509"
       }
     };
     var trendModalBackdrop = document.getElementById("trend-modal-backdrop");
