@@ -1034,7 +1034,7 @@ HTML_CONTENT = """<!doctype html>
     </div>
 
     <div class="detail-body">
-      <div class="label">요약</div>
+      <div class="label">기사 핵심 내용</div>
       <p id="trend-summary"></p>
     </div>
 
@@ -1315,31 +1315,31 @@ HTML_CONTENT = """<!doctype html>
       KR: {
         source: "코스모닝",
         title: "올리브영 '2026 뷰티 트렌드' FULLMOON 발표",
-        summary: "올리브영이 발표한 2026 뷰티 트렌드에서는 환경 차단막 강화와 저자극 포뮬러 기술 진화가 핵심 키워드로 꼽혔다.",
+        summary: "올리브영이 발표한 2026 뷰티 트렌드 'FULLMOON'은 보름달이 상징하는 '온전함·완전성·충만함'을 핵심 개념으로 내세운다. 회복케어와 스킨케어링 메이크업이 강세를 보이며, 환경 차단막을 강화한 스킨케어 제품군이 매출 상위권을 차지하고 있다. '미세먼지 차단 크림', '피부 보호막' 등 관련 검색량은 전년 대비 148% 증가했다.",
         url: "https://www.cosmorning.com/news/article.html?no=51865"
       },
       US: {
         source: "Cosmetics Business",
         title: "What drives the rising demand for cosmetic grade Azelaic Acid?",
-        summary: "피부과 처방 성분인 아젤라산 수요가 급증하며, 매스 브랜드들이 이를 담은 신제품을 잇따라 선보이고 있다.",
+        summary: "\"Azelaic acid has a long history in dermatology as a versatile therapeutic agent, addressing a spectrum of skin concerns. In recent years, demand has expanded beyond dermatology and is increasingly featured in over-the-counter skincare and prestige beauty launches, with mass brands releasing stacked formulas that combine it with complementary actives.\"",
         url: "https://cosmeticsbusiness.com/what-drives-the-rising-demand-for-cosmetic-grade"
       },
       JP: {
         source: "MAQUIA ONLINE",
         title: "【2026年最新ヘアケア5選】もはやスキンケア級。キューティクルケアも再注目！",
-        summary: "두피와 모발을 스킨케어처럼 접근하는 트렌드가 확산되며, 세라마이드 등 보습 성분을 담은 헤어 제품이 주목받고 있다.",
+        summary: "髪表面のキューティクルケアに再び注目が集まっている。これまでは髪内部の補修が中心だったが、キューティクル同士を繋ぎ止めるCMC的な成分でラメラ構造自体を整えるアイテムが増加。頭皮ケア製品にもセラミドなどスキンケア発想の保湿成分が使われ始めている。",
         url: "https://maquia.hpplus.jp/hair/news/115158/"
       },
       FR: {
         source: "Demain Beauty",
         title: "French clean beauty: excellence in skincare in 2026",
-        summary: "프랑스 클린 뷰티는 성분 수를 최소화하면서도 마이크로바이옴 밸런스와 타깃 바이오테크를 앞세운 고성능 미니멀 포뮬러로 진화하고 있다.",
+        summary: "\"Faced with a proliferation of synthetic active ingredients and saturated routines, finding French clean beauty that combines high tolerance and measurable results has become a real strategic challenge.\" 2026년 프랑스 클린 뷰티는 마이크로바이옴 밸런스와 타깃 바이오테크를 앞세워, 단계 수는 줄이면서도 결과는 타협하지 않는 고농축 미니멀 포뮬러로 진화하고 있다.",
         url: "https://demainbeauty.com/en/blogs/blog/la-clean-beauty-francaise-lexcellence-du-soin"
       },
       CN: {
         source: "CBNData",
         title: "一年90个，化妆品新原料透露哪些趋势？",
-        summary: "1년간 90종의 신규 화장품 원료가 등록되며 전년 대비 30% 이상 증가했고, 그중 80%가 자국 기업 등록으로 펩타이드·식물성 발효 원료가 안티에이징 분야의 핵심으로 부상하고 있다.",
+        summary: "2024년 이후 중국 국가약품감독관리국(NMPA)에 총 90종의 신규 화장품 원료가 등록되며 2023년(69종) 대비 30.4% 증가했다. 이 중 80% 이상이 자국 기업 등록이며, 식물 유래 원료가 합성 화학 원료를 앞지르고 펩타이드·NMN이 안티에이징 분야의 핵심 소재로 떠오르고 있다.",
         url: "https://m.cbndata.com/information/293509"
       }
     };
