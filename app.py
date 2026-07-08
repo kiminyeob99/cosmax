@@ -383,15 +383,19 @@ HTML_CONTENT = """<!doctype html>
 
   /* ---------- Ingredient chips ---------- */
   .chip-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   .chip-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 13px;
-    padding: 15px 17px;
+    padding: 13px 17px;
     cursor: pointer;
     transition: border-color 0.16s ease, transform 0.16s cubic-bezier(.2,.8,.2,1), box-shadow 0.16s ease;
     text-align: left;
@@ -409,6 +413,25 @@ HTML_CONTENT = """<!doctype html>
     background: var(--accent-soft);
     box-shadow: var(--shadow-md);
   }
+  .chip-rank {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-small);
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .chip-card:nth-child(-n+3) .chip-rank {
+    background: var(--btn);
+    color: var(--btn-ink);
+  }
+  .chip-main { flex: 1; min-width: 0; }
   .chip-card .name {
     font-weight: 600;
     font-size: var(--fs-body);
@@ -426,7 +449,7 @@ HTML_CONTENT = """<!doctype html>
   .chip-card .desc {
     font-size: var(--fs-small);
     color: var(--muted);
-    margin-top: 7px;
+    margin-top: 4px;
     line-height: 1.55;
   }
 
@@ -960,10 +983,10 @@ HTML_CONTENT = """<!doctype html>
   <section class="block" id="ingredients">
     <div class="block-head">
       <div>
-        <h2>요즘 뜨는 성분</h2>
-        <div class="sub">클릭하면 대한화장품협회 성분사전 정보와, 아래 관련 브랜드 제품을 함께 볼 수 있어요</div>
+        <h2>요즘 뜨는 성분 랭킹</h2>
+        <div class="sub">전주 대비 검색량 증가율 기준 · 클릭하면 대한화장품협회 성분사전 정보와, 아래 관련 브랜드 제품을 함께 볼 수 있어요</div>
       </div>
-      <span class="count-tag" id="ingredient-count">6개 성분</span>
+      <span class="count-tag" id="ingredient-count">TOP 10</span>
     </div>
     <div class="chip-grid" id="chip-grid">
     </div>
@@ -1202,6 +1225,70 @@ HTML_CONTENT = """<!doctype html>
         avoidWith: [],
         avoidNote: "건조한 환경에서 보습 크림 없이 단독 사용하면 오히려 피부 속 수분을 끌어올려 날려버릴 수 있어 유수분 크림과 함께 쓰는 걸 추천해요.",
         skinTypes: ["모든 피부 타입", "건성", "수분 부족형 지성"]
+      },
+      {
+        name: "아젤라익애씨드",
+        stdName: "아젤라익애씨드",
+        engName: "Azelaic Acid",
+        cas: "123-99-9",
+        code: "-",
+        definition: "곡물 발효 또는 합성으로 제조되는 디카르복실산 계열 성분. 피지 조절과 색소 침착 개선 목적으로 사용된다.",
+        purposes: ["피부컨디셔닝제", "피지조절제"],
+        url: "https://kcia.or.kr/cid/search/ingd_list.php",
+        delta: "+21%",
+        desc: "미국發 트러블·색소 케어 처방 성분, 매스 채널로 확산",
+        goodWith: ["나이아신아마이드", "히알루론산", "판테놀"],
+        avoidWith: ["고농도 순수 비타민C(아스코르빅애씨드)", "강한 물리적 각질제거"],
+        avoidNote: "산성도가 있는 성분이라 강한 산성 성분과 겹치면 자극이 커질 수 있어, 사용 시간을 나눠 쓰는 게 좋아요.",
+        skinTypes: ["지성", "트러블성", "색소침착 고민 피부"]
+      },
+      {
+        name: "레티놀",
+        stdName: "레티놀",
+        engName: "Retinol",
+        cas: "68-26-8",
+        code: "-",
+        definition: "비타민 A 유도체로, 피부 재생 주기를 촉진해 주름·탄력·모공 케어에 널리 쓰이는 성분.",
+        purposes: ["피부컨디셔닝제(기타)"],
+        url: "https://kcia.or.kr/cid/search/ingd_list.php",
+        delta: "+16%",
+        desc: "저자극 캡슐화 기술 발전으로 매스 라인까지 확대",
+        goodWith: ["히알루론산", "판테놀", "세라마이드"],
+        avoidWith: ["고농도 각질케어산(AHA/BHA)", "벤조일퍼옥사이드"],
+        avoidNote: "동시 사용 시 자극이 배가될 수 있어 최소 하루 텀을 두고 번갈아 사용하는 걸 추천해요.",
+        skinTypes: ["복합성", "노화 케어가 필요한 피부", "모공 케어가 필요한 피부"]
+      },
+      {
+        name: "아데노신",
+        stdName: "아데노신",
+        engName: "Adenosine",
+        cas: "58-61-7",
+        code: "-",
+        definition: "뉴클레오사이드 계열 성분으로, 국내에서는 주름 개선 기능성화장품 고시 원료로 사용된다.",
+        purposes: ["피부컨디셔닝제(기타)"],
+        url: "https://kcia.or.kr/cid/search/ingd_list.php",
+        delta: "+11%",
+        desc: "국내 주름 개선 기능성 고시 성분으로 스테디한 수요",
+        goodWith: ["히알루론산", "나이아신아마이드", "펩타이드"],
+        avoidWith: [],
+        avoidNote: "자극이 적어 다른 기능성 성분과 무난하게 함께 사용할 수 있어요.",
+        skinTypes: ["모든 피부 타입", "노화 케어가 필요한 피부"]
+      },
+      {
+        name: "PDRN",
+        stdName: "폴리데옥시리보뉴클레오타이드나트륨",
+        engName: "Sodium DNA",
+        cas: "표기 없음",
+        code: "-",
+        definition: "연어·송어 등의 생식세포에서 추출한 DNA 유래 성분. 피부 재생과 상처 회복 관련 연구로 주목받고 있다.",
+        purposes: ["피부컨디셔닝제(기타)"],
+        url: "https://kcia.or.kr/cid/search/ingd_list.php",
+        delta: "+27%",
+        desc: "재생·탄력 앰플 라인에서 가장 빠르게 성장하는 성분",
+        goodWith: ["히알루론산", "펩타이드", "판테놀"],
+        avoidWith: ["고농도 각질케어산(AHA/BHA)"],
+        avoidNote: "핵산 성분이라 강한 산성 환경에서는 안정성이 떨어질 수 있어요.",
+        skinTypes: ["건성", "탄력 저하 피부", "재생 케어가 필요한 피부"]
       }
     ];
 
@@ -1500,14 +1587,20 @@ HTML_CONTENT = """<!doctype html>
 
     function renderChips() {
       chipGrid.innerHTML = "";
-      ingredients.forEach(function (ing) {
+      var ranked = ingredients.slice().sort(function (a, b) {
+        return parseFloat(b.delta) - parseFloat(a.delta);
+      });
+      ranked.forEach(function (ing, idx) {
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "chip-card" + (activeIngredient === ing.name ? " active" : "");
         btn.setAttribute("aria-pressed", activeIngredient === ing.name ? "true" : "false");
         btn.innerHTML =
+          '<div class="chip-rank">' + (idx + 1) + '</div>' +
+          '<div class="chip-main">' +
           '<div class="name">' + ing.name + '<span class="delta">' + ing.delta + '</span></div>' +
-          '<div class="desc">' + ing.desc + '</div>';
+          '<div class="desc">' + ing.desc + '</div>' +
+          '</div>';
         btn.addEventListener("click", function () {
           activeIngredient = activeIngredient === ing.name ? null : ing.name;
           renderChips();
