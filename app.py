@@ -316,7 +316,9 @@ HTML_CONTENT = """<!doctype html>
     box-shadow: var(--shadow-md);
     transition: transform 0.18s cubic-bezier(.2,.8,.2,1), border-color 0.18s ease;
   }
+  .country-card { cursor: pointer; }
   .country-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+  .country-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .country-media {
     flex: none;
     height: 84px;
@@ -713,6 +715,21 @@ HTML_CONTENT = """<!doctype html>
     border-radius: 14px;
     font-size: 1.3rem;
   }
+  .modal-country-tile {
+    flex: none;
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--btn) 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+  }
   .modal-titles .std-tag {
     font-size: var(--fs-micro);
     letter-spacing: 0.1em;
@@ -852,49 +869,49 @@ HTML_CONTENT = """<!doctype html>
       <span class="count-tag">5개 지역</span>
     </div>
     <div class="rail">
-      <article class="country-card">
+      <article class="country-card" data-country="KR" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="country-media">KR</div>
         <div class="country-content">
           <div class="region">한국</div>
           <h3>저자극 · 맨살 화장 열풍 지속</h3>
           <p>피부 장벽 강화를 내세운 "스킨 배리어" 라인 검색량 전주 대비 상승. 무기자차 재조명.</p>
-          <div class="src">출처: 올리브영 트렌드 리포트</div>
+          <div class="src">출처: 올리브영 트렌드 리포트 · 클릭하면 관련 기사를 볼 수 있어요</div>
         </div>
       </article>
-      <article class="country-card">
+      <article class="country-card" data-country="US" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="country-media">US</div>
         <div class="country-content">
           <div class="region">미국</div>
           <h3>더마 코스메틱, 매스 채널로 확장</h3>
           <p>피부과 처방 성분(레티놀, 아젤라산)을 담은 매스 브랜드 신제품이 잇따라 출시.</p>
-          <div class="src">출처: Cosmetics Business</div>
+          <div class="src">출처: Cosmetics Business · 클릭하면 관련 기사를 볼 수 있어요</div>
         </div>
       </article>
-      <article class="country-card">
+      <article class="country-card" data-country="JP" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="country-media">JP</div>
         <div class="country-content">
           <div class="region">일본</div>
           <h3>두피 스킨케어 카테고리 성장</h3>
           <p>"두피도 피부"라는 메시지로 헤어 제품이 스킨케어 성분(세라마이드 등)을 차용.</p>
-          <div class="src">출처: 닛케이 트렌디</div>
+          <div class="src">출처: MAQUIA ONLINE · 클릭하면 관련 기사를 볼 수 있어요</div>
         </div>
       </article>
-      <article class="country-card">
+      <article class="country-card" data-country="FR" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="country-media">FR</div>
         <div class="country-content">
           <div class="region">프랑스</div>
           <h3>저용량 · 고순도 포뮬러 선호</h3>
           <p>성분 수를 줄인 "미니멀 포뮬러"가 클린 뷰티의 다음 단계로 언급되는 빈도 증가.</p>
-          <div class="src">출처: Premium Beauty News</div>
+          <div class="src">출처: Demain Beauty · 클릭하면 관련 기사를 볼 수 있어요</div>
         </div>
       </article>
-      <article class="country-card">
+      <article class="country-card" data-country="CN" tabindex="0" role="button" aria-haspopup="dialog">
         <div class="country-media">CN</div>
         <div class="country-content">
           <div class="region">중국</div>
           <h3>기능성 원료 국산화 가속</h3>
           <p>자국산 발효 원료·펩타이드 소재를 강조하는 브랜드 라인업이 빠르게 늘어나는 추세.</p>
-          <div class="src">출처: WWD China</div>
+          <div class="src">출처: 品观网(Pinguan) · 클릭하면 관련 기사를 볼 수 있어요</div>
         </div>
       </article>
     </div>
@@ -1001,6 +1018,31 @@ HTML_CONTENT = """<!doctype html>
     <div class="detail-body">
       <div class="label">리뷰 3개 (예시)</div>
       <div class="review-list" id="modal-reviews"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="trend-modal-backdrop">
+  <div class="product-modal" id="trend-modal" role="dialog" aria-modal="true" aria-labelledby="trend-title">
+    <button class="detail-close modal-close" id="trend-modal-close" type="button" aria-label="트렌드 기사 닫기">&times;</button>
+    <div class="modal-top">
+      <div class="modal-country-tile" id="trend-region-tag"></div>
+      <div class="modal-titles">
+        <div class="std-tag" id="trend-source"></div>
+        <h3 id="trend-title"></h3>
+      </div>
+    </div>
+
+    <div class="detail-body">
+      <div class="label">요약</div>
+      <p id="trend-summary"></p>
+    </div>
+
+    <div class="detail-foot">
+      <span class="src-note">실제 보도된 기사 링크입니다</span>
+      <a class="kcia-link" id="trend-link" href="#" target="_blank" rel="noopener">
+        원문 기사 보기 →
+      </a>
     </div>
   </div>
 </div>
@@ -1268,6 +1310,73 @@ HTML_CONTENT = """<!doctype html>
       }
     ];
 
+    // 국가별 트렌드에 대응하는 실제 보도 기사
+    var trendArticles = {
+      KR: {
+        source: "코스모닝",
+        title: "올리브영 '2026 뷰티 트렌드' FULLMOON 발표",
+        summary: "올리브영이 발표한 2026 뷰티 트렌드에서는 환경 차단막 강화와 저자극 포뮬러 기술 진화가 핵심 키워드로 꼽혔다.",
+        url: "https://www.cosmorning.com/news/article.html?no=51865"
+      },
+      US: {
+        source: "Cosmetics Business",
+        title: "What drives the rising demand for cosmetic grade Azelaic Acid?",
+        summary: "피부과 처방 성분인 아젤라산 수요가 급증하며, 매스 브랜드들이 이를 담은 신제품을 잇따라 선보이고 있다.",
+        url: "https://cosmeticsbusiness.com/what-drives-the-rising-demand-for-cosmetic-grade"
+      },
+      JP: {
+        source: "MAQUIA ONLINE",
+        title: "【2026年最新ヘアケア5選】もはやスキンケア級。キューティクルケアも再注目！",
+        summary: "두피와 모발을 스킨케어처럼 접근하는 트렌드가 확산되며, 세라마이드 등 보습 성분을 담은 헤어 제품이 주목받고 있다.",
+        url: "https://maquia.hpplus.jp/hair/news/115158/"
+      },
+      FR: {
+        source: "Demain Beauty",
+        title: "French clean beauty: excellence in skincare in 2026",
+        summary: "프랑스 클린 뷰티는 성분 수를 최소화하면서도 마이크로바이옴 밸런스와 타깃 바이오테크를 앞세운 고성능 미니멀 포뮬러로 진화하고 있다.",
+        url: "https://demainbeauty.com/en/blogs/blog/la-clean-beauty-francaise-lexcellence-du-soin"
+      },
+      CN: {
+        source: "品观网(Pinguan)",
+        title: "这些中国美妆原料全球领先！",
+        summary: "발효 유래 원료와 펩타이드 등 자국산 기능성 소재를 앞세운 중국 브랜드들이 세계 시장에서도 경쟁력을 인정받고 있다.",
+        url: "https://m.pinguan.com/article/detail/id/21513"
+      }
+    };
+    var trendModalBackdrop = document.getElementById("trend-modal-backdrop");
+    var trendModalClose = document.getElementById("trend-modal-close");
+
+    function openTrendModal(countryCode) {
+      var t = trendArticles[countryCode];
+      if (!t) return;
+      document.getElementById("trend-region-tag").textContent = countryCode;
+      document.getElementById("trend-source").textContent = "출처: " + t.source;
+      document.getElementById("trend-title").textContent = t.title;
+      document.getElementById("trend-summary").textContent = t.summary;
+      document.getElementById("trend-link").href = t.url;
+      trendModalBackdrop.classList.add("open");
+    }
+
+    function closeTrendModal() {
+      trendModalBackdrop.classList.remove("open");
+    }
+
+    document.querySelectorAll(".country-card").forEach(function (card) {
+      card.addEventListener("click", function () {
+        openTrendModal(card.getAttribute("data-country"));
+      });
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openTrendModal(card.getAttribute("data-country"));
+        }
+      });
+    });
+    trendModalClose.addEventListener("click", closeTrendModal);
+    trendModalBackdrop.addEventListener("click", function (e) {
+      if (e.target === trendModalBackdrop) closeTrendModal();
+    });
+
     // 헤드라인 다국어 자동 순환 (한국어 → 영어 → 중국어 → 일본어)
     var headlineTexts = [
       "오늘, 뷰티 시장에서 알아야 할 것들",
@@ -1451,7 +1560,10 @@ HTML_CONTENT = """<!doctype html>
       if (e.target === modalBackdrop) closeProductModal();
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeProductModal();
+      if (e.key === "Escape") {
+        closeProductModal();
+        closeTrendModal();
+      }
     });
 
     renderChips();
