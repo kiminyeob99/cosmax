@@ -1784,4 +1784,4 @@ HTML_CONTENT = """<!doctype html>
 """
 
 
-components.html(HTML_CONTENT, height=3200, scrolling=True)
+components.html(HTML_CONTENT, height=4200, scrolling=True)
