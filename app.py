@@ -427,7 +427,7 @@ HTML_CONTENT = """<!doctype html>
     background: var(--accent-soft);
     color: var(--accent-strong);
   }
-  .chip-card:nth-child(-n+3) .chip-rank {
+  .chip-rank.top {
     background: var(--btn);
     color: var(--btn-ink);
   }
@@ -1590,13 +1590,14 @@ HTML_CONTENT = """<!doctype html>
       var ranked = ingredients.slice().sort(function (a, b) {
         return parseFloat(b.delta) - parseFloat(a.delta);
       });
+      var activeBtn = null;
       ranked.forEach(function (ing, idx) {
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "chip-card" + (activeIngredient === ing.name ? " active" : "");
         btn.setAttribute("aria-pressed", activeIngredient === ing.name ? "true" : "false");
         btn.innerHTML =
-          '<div class="chip-rank">' + (idx + 1) + '</div>' +
+          '<div class="chip-rank' + (idx < 3 ? ' top' : '') + '">' + (idx + 1) + '</div>' +
           '<div class="chip-main">' +
           '<div class="name">' + ing.name + '<span class="delta">' + ing.delta + '</span></div>' +
           '<div class="desc">' + ing.desc + '</div>' +
@@ -1608,7 +1609,13 @@ HTML_CONTENT = """<!doctype html>
           renderDetail();
         });
         chipGrid.appendChild(btn);
+        if (activeIngredient === ing.name) activeBtn = btn;
       });
+      if (activeBtn) {
+        activeBtn.insertAdjacentElement("afterend", detailPanel);
+      } else {
+        chipGrid.insertAdjacentElement("afterend", detailPanel);
+      }
     }
 
     function renderDetail() {
